@@ -20,8 +20,8 @@ from main import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.getGreeting),
-    path('/items', views.getItems),
-    path('/items', views.addItem),
-    path('items/<int:id>/', views.updateItem),
-    path('/items/<int:id>/', views.deleteItem),
+    path('items/', views.getItems),
+    path('add_item/', views.addItem),
+    path('item/<int:id>/', views.updateItem),
+    path('item/<int:id>/', views.deleteItem),
 ]

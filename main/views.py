@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
+from django.views.decorators.http import require_http_methods
 from main.models import TodoItem
 
 # Create your views here.
 def getGreeting(request):
-    pass
+    greetings = "Hello World!"
+    return render(request, 'home.html', {'greetings': greetings})
 
 
 def getItems(request):
@@ -12,12 +14,13 @@ def getItems(request):
     return render(request, 'home.html', {'todo_items': todo_items})  
 
 
+@require_http_methods(["POST"])
 def addItem(request):
-    name = request.GET.get('name')
+    name = request.POST.get('name')
     todo_item = TodoItem.objects.create(name=name)
     todo_item.save()
 
-    return redirect('/')
+    return redirect('/items/')
 
 
 def updateItem(request, id):
