@@ -28,10 +28,13 @@ def updateItem(request, id):
     item.completed = True
     item.save()
     
-    return redirect('/')
+    return redirect('/items/')
 
 def deleteItem(request, id):
     item = TodoItem.objects.get(id=id)
-    item.delete()
+    # item.delete() 
+    # Here we are using soft deletion
+    item.is_deleted = True
+    item.save()
     
-    return redirect('/')
+    return redirect('/items/')

@@ -5,17 +5,26 @@
     <form method="POST" action="/add_item/">
       {% csrf_token %}
       <div class="input-group mb-3 input-item" style="margin: 20px;">
-        <input type="text" name="name" class="form-control" placeholder="New Item" aria-label="New Item" aria-describedby="basic-addon2">
-        <button type="submit" class="input-group-text" id="basic-addon2">Add Item</button>
+        <input type="text" name="name" class="form-control" placeholder="New Item" aria-label="New Item" aria-describedby="basic-addon2" style="font-size: 22px;">
+        <button type="submit" class="input-group-text" id="basic-addon2" style="font-size: 22px;">Add Item</button>
       </div>
     </form>
     {% for items in todo_items %}
-    <div class="input-group mb-3" style="margin: 20px; background-color: white; padding: 6px;">
-      <div class="input-group-text">
-        <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
-      </div>
-      <span class="form-control" style="padding-left: 20px;">{{ items.name }}</span>
-    </div>
+
+      <div class="input-group mb-3 {% if items.is_deleted %} bck-color-deleted {% else %} bck-color-default {% endif %}" style="margin: 20px; padding: 6px;">      
+        <div class="input-group-text">
+          <form method="POST" action="/update_item/{{ items.id }}/">
+            {% csrf_token %}
+            <input class="form-check-input mt-0" type="checkbox" onchange="this.closest('form').submit()" value="" aria-label="Checkbox for following text input" {% if items.completed %} checked {% endif %}>
+          </form>
+        </div>          
+          <span class="form-control {% if items.is_deleted %} deleted-line-through-text bck-color-deleted {% endif %} {% if items.completed %} completed-line-through-text {% endif %}" style="padding-left: 20px; font-size: 22px;">{{ items.name }}</span>
+          <form method="POST" action="/delete_item/{{ items.id }}/">
+            {% csrf_token %}
+            <a href="#" class="bi bi-x-circle-fill" onclick="this.closest('form').submit()" style="text-align: right; font-size: 30px; margin: 4px; color: #e33104;"></a>
+          </form>
+        </div>
+    
     {% endfor %}  
 </div>
 {% endblock content %}

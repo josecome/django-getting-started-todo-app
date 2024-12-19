@@ -22,6 +22,6 @@ urlpatterns = [
     path('', views.getGreeting),
     path('items/', views.getItems),
     path('add_item/', views.addItem),
-    path('item/<int:id>/', views.updateItem),
-    path('item/<int:id>/', views.deleteItem),
+    path('update_item/<int:id>/', views.updateItem),
+    path('delete_item/<int:id>/', views.deleteItem),
 ]
