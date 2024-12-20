@@ -5,6 +5,10 @@ from main.models import TodoItem
 # Create your views here.
 def getGreeting(request):
     greetings = "Hello World!"
+    items = TodoItem.objects.all()
+    if items.exists():
+        return redirect('/items/')
+    
     return render(request, 'home.html', {'greetings': greetings})
 
 

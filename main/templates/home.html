@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<div style="margin: 40px 80px 40px 40px;">  
+<div class="div-margin">
+    <h2 class="div-text">{% if greetings %} {{ greetings }} {% endif %}</h2>
     <form method="POST" action="/add_item/">
       {% csrf_token %}
       <div class="input-group mb-3 input-item" style="margin: 20px;">
@@ -9,8 +10,8 @@
         <button type="submit" class="input-group-text" id="basic-addon2" style="font-size: 22px;">Add Item</button>
       </div>
     </form>
+    <h3 class="div-text">{% if greetings %} No items found. Add a new item! {% endif %}</h3>
     {% for items in todo_items %}
-
       <div class="input-group mb-3 {% if items.is_deleted %} bck-color-deleted {% else %} bck-color-default {% endif %}" style="margin: 20px; padding: 6px;">      
         <div class="input-group-text">
           <form method="POST" action="/update_item/{{ items.id }}/">
@@ -25,6 +26,6 @@
           </form>
         </div>
     
-    {% endfor %}  
+    {% endfor %}
 </div>
 {% endblock content %}
