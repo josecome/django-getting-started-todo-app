@@ -3,26 +3,26 @@
 {% block content %}
 <div class="div-margin">
     <h2 class="div-text">{% if greetings %} {{ greetings }} {% endif %}</h2>
-    <form method="POST" action="/add_item/">
+    <form method="post" action="/add_item/">
       {% csrf_token %}
-      <div class="input-group mb-3 input-item" style="margin: 20px;">
-        <input type="text" name="name" class="form-control" placeholder="New Item" aria-label="New Item" aria-describedby="basic-addon2" style="font-size: 22px;">
-        <button type="submit" class="input-group-text" id="basic-addon2" style="font-size: 22px;">Add Item</button>
+      <div class="input-group mb-3 input-item margin20">
+        <input type="text" name="name" class="form-control fontsize22" placeholder="New Item" aria-label="New Item" aria-describedby="basic-addon2">
+        <button type="submit" class="input-group-text fontsize22" id="basic-addon2">Add Item</button>
       </div>
     </form>
     <h3 class="div-text">{% if greetings %} No items found. Add a new item! {% endif %}</h3>
     {% for items in todo_items %}
-      <div class="input-group mb-3 {% if items.is_deleted %} bck-color-deleted {% else %} bck-color-default {% endif %}" style="margin: 20px; padding: 6px;">      
+      <div class="input-group mb-3 mp20-6 {% if items.is_deleted %} bck-color-deleted {% else %} bck-color-default {% endif %}">      
         <div class="input-group-text">
-          <form method="POST" action="/update_item/{{ items.id }}/">
+          <form method="post" action="/update_item/{{ items.id }}/">
             {% csrf_token %}
             <input class="form-check-input mt-0" type="checkbox" onchange="this.closest('form').submit()" value="" aria-label="Checkbox for following text input" {% if items.completed %} checked {% endif %}>
           </form>
         </div>          
-          <span class="form-control {% if items.is_deleted %} deleted-line-through-text bck-color-deleted {% endif %} {% if items.completed %} completed-line-through-text {% endif %}" style="padding-left: 20px; font-size: 22px;">{{ items.name }}</span>
-          <form method="POST" action="/delete_item/{{ items.id }}/">
+          <span class="form-control mp20-22 {% if items.is_deleted %} deleted-line-through-text bck-color-deleted {% endif %} {% if items.completed %} completed-line-through-text {% endif %}">{{ items.name }}</span>
+          <form method="post" action="/delete_item/{{ items.id }}/">
             {% csrf_token %}
-            <a href="#" class="bi bi-x-circle-fill" onclick="this.closest('form').submit()" style="text-align: right; font-size: 30px; margin: 4px; color: #e33104;"></a>
+            <a href="#" class="bi bi-x-circle-fill lnk-remove" onclick="this.closest('form').submit()"></a>
           </form>
         </div>
     

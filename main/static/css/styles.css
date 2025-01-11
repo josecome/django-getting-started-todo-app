@@ -1,0 +1,48 @@
+body {
+    background-color: #3498db;
+}
+main {
+    width: 100%;
+}
+.completed-line-through-text {
+    text-decoration-line: line-through;
+    text-decoration-color: blue;
+    text-decoration-thickness: 4px;
+}
+.deleted-line-through-text {
+    text-decoration-line: line-through;
+    text-decoration-color: red;
+    text-decoration-thickness: 4px;
+}
+.bck-color-default {
+    background-color: white; 
+}                
+.bck-color-deleted {
+    background-color: #5dade2;
+}
+.div-margin {
+    margin: 40px 80px 40px 40px;
+}
+#div-text {
+    text-align: center; color: white;
+}
+.margin20 {
+    margin: 20px;
+}
+.fontsize22 {
+    font-size: 22px;
+}
+.mp20-6 {
+    margin: 20px;
+    padding: 6px;
+}
+.lnk-remove {
+    text-align: right;
+    font-size: 30px;
+    margin: 4px;
+    color: #e33104;
+}
+.mp20-22 {
+    padding-left: 20px;
+    font-size: 22px;
+}
